@@ -14,6 +14,7 @@ const ShopPage = () => {
   //Dữ liệu sản phẩm hiển thị theo dispatch của store action.type = "FILTER". VÀ dùng nó để hiển thị component ProductList
   const dataShop = useSelector((state) => state.cart.listItem);
   console.log(dataShop);
+
   return (
     <div className="shop-page">
       <div className="wrap-title-shop">
@@ -58,18 +59,20 @@ const ShopPage = () => {
               <PaginationItem className="page-li">
                 <PaginationLink first href="#" className="page-a" />
               </PaginationItem>
-              {dataShop && (
+              {dataShop[0] ? (
                 <PaginationItem active>
                   <PaginationLink href="#" className="page-a">
                     1
                   </PaginationLink>
                 </PaginationItem>
+              ) : (
+                " "
               )}
               <PaginationItem>
                 <PaginationLink
                   href="#"
                   last
-                  className={dataShop ? "page-a" : "page-a page-a-plus"}
+                  className={dataShop[0] ? "page-a" : "page-a page-a-plus"}
                 />
               </PaginationItem>
             </Pagination>
