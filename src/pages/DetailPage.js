@@ -1,9 +1,8 @@
 import { Col, Row } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { json, useLoaderData, useParams } from "react-router-dom";
+import { json, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import "./DetailPage.css";
-import Related from "../component/shop/Related";
 
 const DetailPage = () => {
   const [typeQuantity, setTypeQuantity] = useState(1); //state lưu số lượng sản phẩm
@@ -19,42 +18,40 @@ const DetailPage = () => {
   //params khới vi71 id của sản phẩm đang hiển thị
   const params = useParams();
 
-  //Hàm tiến hành lấy thông tin sản phẩm
-  const showDetailProduct = () => {
-    //Lấy sản phẩm trong shop khớp với id là params
-    const dataOneDetail = dataNewDetail.find(
-      (de) => de.id.$oid === params.productId
-    );
-
-    console.log(dataOneDetail);
-    setDataForId(dataOneDetail);
-
-    //Lấy các sản phẩm cùng chung category
-    const dataManyProduct = dataNewDetail.filter(
-      (product) => product.category === dataOneDetail.category
-    );
-    console.log(dataManyProduct);
-
-    //Lấy các sản phẩm còn lại trừ sản phẩm hiện được trang render
-    if (dataManyProduct.length > 1) {
-      //Từ 2 sản phẩm mới lọc
-      var leftData = dataManyProduct.filter(
-        (product) => product.id.$oid !== params.productId
-      );
-    } else {
-      //Nếu không thì null chứ không lọc
-      leftData = null;
-    }
-
-    console.log(leftData);
-    //Lưu kết quả vào state dataRelated
-    setDataRelated(leftData);
-  };
-
   useEffect(() => {
-    //Hàm sẽ được gọi 1 lần khi vào trang
+    //Hàm tiến hành lấy thông tin sản phẩm
+    const showDetailProduct = () => {
+      //Lấy sản phẩm trong shop khớp với id là params
+      const dataOneDetail = dataNewDetail.find(
+        (de) => de.id.$oid === params.productId
+      );
+
+      console.log(dataOneDetail);
+      setDataForId(dataOneDetail);
+
+      //Lấy các sản phẩm cùng chung category
+      const dataManyProduct = dataNewDetail.filter(
+        (product) => product.category === dataOneDetail.category
+      );
+      console.log(dataManyProduct);
+
+      //Lấy các sản phẩm còn lại trừ sản phẩm hiện được trang render
+      if (dataManyProduct.length > 1) {
+        //Từ 2 sản phẩm mới lọc
+        var leftData = dataManyProduct.filter(
+          (product) => product.id.$oid !== params.productId
+        );
+      } else {
+        //Nếu không thì null chứ không lọc
+        leftData = null;
+      }
+
+      console.log(leftData);
+      //Lưu kết quả vào state dataRelated
+      setDataRelated(leftData);
+    };
     showDetailProduct();
-  }, []);
+  }, [params.productId]);
 
   console.log(dataForId);
   console.log(dataRelated);
@@ -93,6 +90,9 @@ const DetailPage = () => {
       payload: { data: dataForId, quantity: typeQuantity },
     });
   };
+
+  const navigate = useNavigate();
+  console.log(params);
 
   return (
     <div>
@@ -178,7 +178,23 @@ const DetailPage = () => {
         <div className="display-relate">
           {dataRelated
             ? dataRelated.map((relate, index) => (
-                <Related key={index} dataRelated={relate} />
+                <div
+                  key={index}
+                  onClick={() => {
+                    navigate(`/detail/${relate.id.$oid}`);
+                  }}
+                >
+                  <img
+                    className="related-img"
+                    src={relate && relate.img1}
+                    alt="dataRelated"
+                  />
+                  <h5 className="name-relate">{relate && relate.name}</h5>
+                  <p className="price-relate">
+                    {relate && relate.price.toLocaleString()}
+                    VND
+                  </p>
+                </div>
               ))
             : "Not related product"}
         </div>

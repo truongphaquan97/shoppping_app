@@ -17,7 +17,7 @@ const Products = (props) => {
 
   //const windowSize = useRef([window.innerWidth, window.innerHeight]);
   return (
-    <>
+    <div>
       {listOne && <Popup delete={deletePopuphandler} data={listOne} />}
       <div className="wrap-product">
         <div className="title-product">
@@ -46,7 +46,7 @@ const Products = (props) => {
         </div>
       </div>
       <MoreInfo />
-    </>
+    </div>
   );
 };
 

@@ -54,7 +54,7 @@ const PopupChat = () => {
   };
 
   return (
-    <>
+    <div>
       {isChat ? (
         <div className="wrap-chat">
           <div className="box-chat">
@@ -125,7 +125,7 @@ const PopupChat = () => {
           <i className="fa-brands fa-facebook-messenger" />
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
