@@ -58,7 +58,7 @@ const ShopPage = () => {
               <PaginationItem className="page-li">
                 <PaginationLink first href="#" className="page-a" />
               </PaginationItem>
-              {dataShop.length !== 0 && (
+              {dataShop && (
                 <PaginationItem active>
                   <PaginationLink href="#" className="page-a">
                     1
@@ -69,9 +69,7 @@ const ShopPage = () => {
                 <PaginationLink
                   href="#"
                   last
-                  className={
-                    dataShop.length !== 0 ? "page-a" : "page-a page-a-plus"
-                  }
+                  className={dataShop ? "page-a" : "page-a page-a-plus"}
                 />
               </PaginationItem>
             </Pagination>

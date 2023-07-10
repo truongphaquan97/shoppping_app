@@ -57,7 +57,7 @@ const cartReducer = (
     return {
       ...state,
       listItem: action.payload.data,
-      category: "all",
+      category: action.payload.category,
     };
   }
 

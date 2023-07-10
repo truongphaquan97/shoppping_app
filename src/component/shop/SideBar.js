@@ -17,7 +17,7 @@ const SideBar = (props) => {
   const storeCategory = useSelector((state) => state.cart.category);
 
   const showAllHandler = () => {
-    dispatch({ type: "ALL", payload: props.data });
+    dispatch({ type: "ALL", payload: { data: props.data, category: "all" } });
   };
 
   useEffect(() => {

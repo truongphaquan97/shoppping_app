@@ -15,7 +15,7 @@ const Banner = (props) => {
     //Khi chuyển hướng thì lấy dữ liệu để thực hiện action hiển thị hết ác sản phẩm
     dispatch({
       type: "ALL",
-      payload: props.product,
+      payload: { data: props.product, category: "all" },
     });
   };
 
