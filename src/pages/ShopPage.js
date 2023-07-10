@@ -79,7 +79,7 @@ const ShopPage = () => {
               </PaginationItem>
             </Pagination>
             <p className="text-pan">
-              Showing 1-9 of {dataShop.length === 0 ? "9" : "0"} results
+              Showing 1-9 of {dataShop.length === 0 ? "0" : "9"} results
             </p>
           </div>
         </div>
