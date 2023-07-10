@@ -24,7 +24,7 @@ const NavBar = () => {
   //Chuyển hướng đến ShopPage
   const handlerToShop = () => {
     navigate("/shop");
-    dispatch({ type: "ALL", payload: { data: products, category: "all" } });
+    dispatch({ type: "ALL", payload: products });
   };
 
   //Chuyển hướng đến CartPage
