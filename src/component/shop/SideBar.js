@@ -11,13 +11,13 @@ const SideBar = (props) => {
 
   //Array chứa tất cả sản phẩm
   const dataFilter = JSON.parse(localStorage.getItem("array")) ?? [];
-  console.log(dataFilter[0].category);
+  console.log(dataFilter);
 
   //Đây là string hiển thị category của từng nhóm sản phẩm. "all" hiển thị hết 8 sản phẩm
   const storeCategory = useSelector((state) => state.cart.category);
 
   const showAllHandler = () => {
-    dispatch({ type: "ALL", payload: { data: props.data, category: "all" } });
+    dispatch({ type: "ALL", payload: { data: dataFilter, category: "all" } });
   };
 
   useEffect(() => {
