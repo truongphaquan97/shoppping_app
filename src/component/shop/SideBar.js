@@ -81,6 +81,13 @@ const SideBar = (props) => {
     });
   };
 
+  const showOtherHandler = () => {
+    dispatch({
+      type: "FILTER",
+      payload: { data: props.data, category: "other" },
+    });
+  };
+
   return (
     <div className="side-shop">
       <h4>CATEGORIES</h4>
@@ -169,7 +176,14 @@ const SideBar = (props) => {
         >
           <button>Keyboard</button>
         </li>
-        <li className="type-product">
+        <li
+          className={
+            storeCategory === "other"
+              ? "type-product change-color"
+              : "type-product"
+          }
+          onClick={showOtherHandler}
+        >
           <button>Other</button>
         </li>
       </ul>
