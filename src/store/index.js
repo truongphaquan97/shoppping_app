@@ -235,19 +235,10 @@ const inboxReducer = (state = { data: null }, action) => {
     };
   }
 
-  //Xóa dữ liệu chat khỏi localStorage
-  // if (action.type === "CLOSE") {
-  //   localStorage.setItem("inboxData", JSON.stringify(null));
-  //   return {
-  //     ...state,
-  //     data: action.payload,
-  //   };
-  // }
-
   return state;
 };
 
-//Kết hợp acc1 reducer
+//Kết hợp các reducer
 const rootReducer = combineReducers({
   toggle: toggleReducer,
   cart: cartReducer,

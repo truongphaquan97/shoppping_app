@@ -1,4 +1,4 @@
-import { Form, Link, json, redirect, useSearchParams } from "react-router-dom";
+import { Form, Link, redirect, useSearchParams } from "react-router-dom";
 import "./LoginPage.css";
 import { useEffect, useRef } from "react";
 import store from "../store/index";
@@ -7,9 +7,6 @@ import store from "../store/index";
 const AuthPage = () => {
   //Lấy params
   const [searchParams] = useSearchParams();
-
-  // //isLogin là trang đăng nhập
-  // const isLogin = searchParams.get("mode") === "login";
 
   //ref để theo dõi input
   const formRef = useRef();

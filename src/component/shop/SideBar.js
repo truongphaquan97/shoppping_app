@@ -81,6 +81,7 @@ const SideBar = (props) => {
     });
   };
 
+  //Hàm hiện sản phẩm có category other khi click vào button tương ứng
   const showOtherHandler = () => {
     dispatch({
       type: "FILTER",
