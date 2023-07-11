@@ -43,38 +43,42 @@ const NavBar = () => {
   //Thay đổi thanh NavBar theo trạng thái đăng nhập phụ thuộc theo userCurrent
   useEffect(() => {
     if (userCurrent) {
-      var a = userCurrent.fullName;
+      if (userCurrent.fullName.length > 1) {
+        var a = userCurrent.fullName;
 
-      //Lấy vị trí cách đầu tiên
-      var b = a.indexOf(" ");
+        //Lấy vị trí cách đầu tiên
+        var b = a.indexOf(" ");
 
-      //Lấy họ ra
-      var c = a.slice(0, b);
+        //Lấy họ ra
+        var c = a.slice(0, b);
 
-      // chuyển thành array
-      var d = a.split(" ");
+        // chuyển thành array
+        var d = a.split(" ");
 
-      //xóa đầu array lấy các chữ cuối
-      d.shift();
+        //xóa đầu array lấy các chữ cuối
+        d.shift();
 
-      //Lấy chữ cái đầu của tên còn lại
-      var e = d.map((e) => e.charAt(0));
+        //Lấy chữ cái đầu của tên còn lại
+        var e = d.map((e) => e.charAt(0));
 
-      //Xóa bỏ mảng chuyển thành string cho dính nhau
-      var f = e.join("");
+        //Xóa bỏ mảng chuyển thành string cho dính nhau
+        var f = e.join("");
 
-      //Ghép họ và 2 chữ cái còn lại
-      var name = c + f;
+        //Ghép họ và 2 chữ cái còn lại
+        var name = c + f;
 
-      //Xóa dấu Tiếng việt
-      name = name
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/đ/g, "d")
-        .replace(/Đ/g, "D");
+        //Xóa dấu Tiếng việt
+        name = name
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/đ/g, "d")
+          .replace(/Đ/g, "D");
 
-      setUser(name);
-      console.log(name);
+        setUser(name);
+        console.log(name);
+      } else {
+        setUser(userCurrent.fullName);
+      }
     }
     if (!userCurrent) {
       setUser(null);

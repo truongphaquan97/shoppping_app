@@ -8,10 +8,8 @@ import CheckoutPage from "./pages/CheckoutPage";
 import RegisterPage, { action as rigisterAction } from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import { action as logoutAction } from "./pages/Logout";
-// import { cartLoader } from "./component/util/auth";
 import { loader as navbarLoader } from "./component/Layout/NavBar";
 
-//Dùng React router dom
 const router = createBrowserRouter([
   {
     path: "/",

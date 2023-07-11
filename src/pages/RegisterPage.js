@@ -17,6 +17,7 @@ const RegisterPage = () => {
   useEffect(() => {
     resetHandler();
   }, [searchParams]);
+
   return (
     <div className="wrap-login">
       <div

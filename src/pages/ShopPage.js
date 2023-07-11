@@ -13,8 +13,6 @@ const ShopPage = () => {
 
   //Dữ liệu sản phẩm hiển thị theo dispatch của store action.type = "FILTER". VÀ dùng nó để hiển thị component ProductList
   const dataShop = useSelector((state) => state.cart.listItem);
-  console.log(useSelector((state) => state.cart.listItem));
-  console.log(typeof dataShop);
 
   return (
     <div className="shop-page">

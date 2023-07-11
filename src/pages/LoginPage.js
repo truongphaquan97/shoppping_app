@@ -44,7 +44,7 @@ const AuthPage = () => {
         return false;
       }
     }
-
+    //Kiểm tra mật khẩu
     if (userLogin) {
       if (passwordRef.current.value.length < 8) {
         passwordRef.current.value = "";
@@ -52,7 +52,7 @@ const AuthPage = () => {
         return false;
       }
       console.log(typeof userLogin);
-
+      //Mật khẩu vừa nhập phải khớp với mật khẩu trong userLogin
       if (userLogin.password !== passwordRef.current.value) {
         passwordRef.current.value = "";
         alert("Mật Khẩu không đúng!");
@@ -60,32 +60,13 @@ const AuthPage = () => {
       }
     }
 
-    //Mật khẩu phải >= 8
-
-    //Mật khẩu pải k
-    // const passwordLogin = userArr.find(
-    //   (user) => user.password === passwordRef.current.value
-    // );
-
-    // if (userLogin.password !== passwordRef.current.value) {
-    //   passwordRef.current.value = "";
-    //   alert("Mật Khẩu không đúng!");
-    //   return false;
-    // }
-
-    // if (!passwordLogin) {
-    //   console.log(passwordLogin);
-    //   passwordRef.current.value = "";
-    //   alert("Mật Khẩu không đúng!");
-    //   return false;
-    // }
-
     return true;
   };
 
   const submitForm = (e) => {
     e.preventDefault();
 
+    //Gọi hàm validate
     const isPassData = validateHandler();
 
     if (!isPassData) {
@@ -147,81 +128,3 @@ const AuthPage = () => {
   );
 };
 export default AuthPage;
-
-// export const action = async ({ request }) => {
-//   //Dữ liệu lấy từ Form
-//   const data = await request.formData();
-//   const authData = {
-//     email: data.get("email"),
-//     password: data.get("password"),
-//   };
-
-//   //Lấy thông tin người dùng đã lưu
-//   const userArr = JSON.parse(localStorage.getItem("userArr")) ?? [];
-
-//   //Tiến hành validate
-//   const validateHandler = () => {
-//     //Lần lượt check email và mật khẩu xem có khới với thông tin đã đăng ký chưa
-//     if (!authData.email.includes("@")) {
-//       alert("Vui lòng điền email hợp lệ!");
-//       return false;
-//     }
-
-//     if (userArr) {
-//       console.log(userArr);
-//       const userLogin = userArr.find((user) => user.email === authData.email);
-
-//       if (!userLogin) {
-//         console.log(userLogin);
-//         alert("Email chưa đăng ký!");
-//         return false;
-//       }
-//     }
-
-//     if (authData.password.length < 8) {
-//       alert("Vui lòng điền mật khẩu dài hơn 8 ký tự!");
-//       return false;
-//     }
-
-//     if (userArr) {
-//       console.log(userArr);
-//       const passwordLogin = userArr.find(
-//         (user) => user.password === authData.password
-//       );
-
-//       if (!passwordLogin) {
-//         console.log(passwordLogin);
-//         alert("Mật Khẩu không đúng!");
-//         return false;
-//       }
-//     }
-//     return true;
-//   };
-
-//   //Gọi hàm validateHandler
-//   const isPassData = validateHandler();
-
-//   if (!isPassData) {
-//     return null;
-//   }
-
-//   //Lấy userCurrent để lưu vào store khi chạy action ở dưới
-//   const userCurrent = userArr.find((user) => user.email === authData.email);
-
-//   //Thực hiện action này để đăng nhập
-//   const saveStateStore = () => {
-//     store.dispatch({
-//       type: "ON_LOGIN",
-//       payload: { current: userCurrent },
-//     });
-//   };
-
-//   //Gọi hàm
-//   saveStateStore();
-
-//   //Lưu userCurrent vào localStorage để lấy tên người dùng
-//   localStorage.setItem("userCurrent", JSON.stringify(userCurrent));
-
-//   //Login thành công chuyển hướng sang HomePage
-//   return redirect("/");
-// };
