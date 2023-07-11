@@ -56,7 +56,7 @@ const DetailPage = () => {
   console.log(dataForId);
   console.log(dataRelated);
 
-  //Lấy vslue của input và lưu vào state
+  //Lấy value của input và lưu vào state
   const typeQuantityHandler = (event) => {
     event.preventDefault();
     setTypeQuantity(Number(event.target.value));

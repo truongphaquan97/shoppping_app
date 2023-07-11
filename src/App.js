@@ -3,12 +3,12 @@ import RootLayout from "./pages/Root";
 import HomePage, { loader as productsLoader } from "./pages/HomePage";
 import ShopPage, { loader as shopLoader } from "./pages/ShopPage";
 import DetailPage, { loader as detailLoader } from "./pages/DetailPage";
-import CartPage from "./pages/CartPage";
+import CartPage, { loader as cartLoader } from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import RegisterPage, { action as rigisterAction } from "./pages/RegisterPage";
-import LoginPage, { action as loginAction } from "./pages/LoginPage";
+import LoginPage from "./pages/LoginPage";
 import { action as logoutAction } from "./pages/Logout";
-import { cartLoader } from "./component/util/auth";
+// import { cartLoader } from "./component/util/auth";
 import { loader as navbarLoader } from "./component/Layout/NavBar";
 
 //Dùng React router dom
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       },
       { path: "cart", element: <CartPage />, loader: cartLoader },
       { path: "checkout", element: <CheckoutPage /> },
-      { path: "login", element: <LoginPage />, action: loginAction },
+      { path: "login", element: <LoginPage /> },
       { path: "register", element: <RegisterPage />, action: rigisterAction },
       { path: "logout", action: logoutAction },
     ],

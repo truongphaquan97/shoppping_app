@@ -54,6 +54,7 @@ const cartReducer = (
 
   //Hiên hết sản phẩm ở ShopPage
   if (action.type === "ALL") {
+    localStorage.setItem("array", JSON.stringify(action.payload.data));
     return {
       ...state,
       listItem: action.payload.data,

@@ -1,9 +1,10 @@
 import { useDispatch } from "react-redux";
 import "./CartPage.css";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { json, useLoaderData, useNavigate } from "react-router-dom";
 
 const CartPage = () => {
+  const products = useLoaderData();
   //Dữ liệu giỏ hàng lấy từ localStorage
   const dataCart = JSON.parse(localStorage.getItem("cart")) ?? [];
   console.log(dataCart);
@@ -31,6 +32,7 @@ const CartPage = () => {
   //Chuyển hướng về ShopPage khi click vào Continue shopping
   const changeToShop = () => {
     navigate("/shop");
+    dispatch({ type: "ALL", payload: { data: products, category: "all" } });
   };
 
   //Chuyển hướng đến CheckoutPage khi click vào Proceed to checkout
@@ -209,3 +211,37 @@ const CartPage = () => {
   );
 };
 export default CartPage;
+
+export async function loader() {
+  //Yêu cầu lấy thông tin từ api
+  const response = await fetch(
+    "https://firebasestorage.googleapis.com/v0/b/funix-subtitle.appspot.com/o/Boutique_products.json?alt=media&token=dc67a5ea-e3e0-479e-9eaf-5e01bcd09c74"
+  );
+
+  //Kiểm lỗi tại đây
+  if (!response.ok) {
+    throw json({ message: "Could not fetch product." }, { status: 500 });
+  } else {
+    //nếu không lổi thì lấy dữ liệu về và đọc dữ liệu
+    const data = await response.json();
+    console.log(data);
+
+    //Lưu dữ liệu vào object và đặt tên
+    const request = data.map((product) => {
+      return {
+        id: product._id,
+        name: product.name,
+        price: parseInt(product.price),
+        category: product.category,
+        shortDesc: product.short_desc,
+        longDesc: product.long_desc,
+        img1: product.img1,
+        img2: product.img2,
+        img3: product.img3,
+        img4: product.img4,
+      };
+    });
+
+    return request;
+  }
+}
